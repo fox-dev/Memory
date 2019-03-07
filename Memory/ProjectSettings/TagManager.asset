@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Effect
+  - Enemy_Cluster
+  - PartOfCluster
+  - Crosshair
+  - Undefined
+  - UI
+  - FloatingText
+  - SlidingText
+  - EasyButton
+  - NormalButton
+  - HardButton
+  - Tutorial_Message
+  - CanvasLocator
+  - Results_Card
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Enemy
+  - Player
+  - Projectiles
+  - Effects
+  - Background
+  - Text
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 766274129
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3082334465
+    locked: 0
+  - name: Effects
+    uniqueID: 3972539443
+    locked: 0
