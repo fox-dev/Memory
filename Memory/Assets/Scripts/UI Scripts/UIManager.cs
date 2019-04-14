@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private RectTransform credits_UI; //set in inspector, credits ui
     [SerializeField]
+    private RectTransform options_UI; //set in inspector
+    [SerializeField]
     private RectTransform musicSelect_UI; //set in inspector, ui for music select
     [SerializeField]
     private RectTransform gameplay_UI; //set in inspector, ui for main gameplay
@@ -35,6 +37,10 @@ public class UIManager : MonoBehaviour {
         else if(GameManager.gm.currentState == GameManager.GameState.credits)
         {
             disableAllOtherUI(credits_UI);
+        }
+        else if(GameManager.gm.currentState == GameManager.GameState.options)
+        {
+            disableAllOtherUI(options_UI);
         }
         else if(GameManager.gm.currentState == GameManager.GameState.musicSelect)
         {

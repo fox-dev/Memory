@@ -22,7 +22,7 @@ public class PlayerVisualizer : MonoBehaviour
     Vector3 maxSize, minSize, beatSize;
 
 
-    public float FinishTime;
+    private float FinishTime = 0.1f;
 
     public int beats = 1;
 
@@ -69,12 +69,14 @@ public class PlayerVisualizer : MonoBehaviour
         pulsing();
 
         // pulse();
+        /*
         if (beatPulse)
         {
             transform.localScale = new Vector3((AudioPeer._AmplitudeBuffer * _maxScale) + _startScale, (AudioPeer._AmplitudeBuffer * _maxScale) + _startScale, (AudioPeer._AmplitudeBuffer * _maxScale) + _startScale);
 
             tr.startWidth = (AudioPeer._AmplitudeBuffer * _maxScale) + _startScale;
         }
+        */
     }
 
     void pulse()
@@ -86,6 +88,7 @@ public class PlayerVisualizer : MonoBehaviour
     void pulsing()
     {
         
+        //Tutorial
         if (AudioPeer.ap.tutorial_Playing && beats != AudioPeer.ap.beats)
         {
             beats = AudioPeer.ap.beats;
@@ -114,17 +117,50 @@ public class PlayerVisualizer : MonoBehaviour
             
         }
 
+        //Beat counter on
+        if (GameManager.gm.option == GameManager.Options.count_On && beats != AudioPeer.ap.beats)
+        {
+            beats = AudioPeer.ap.beats;
+            int count = 0;
+            count = (AudioPeer.ap.beats % 4);
+            if (count == 0) { count = 4; }
+            
+
+
+            if (GameManager.gm.currentState == GameManager.GameState.memoryRelay)
+            {
+                count = AudioPeer.ap.beatsInPhase;
+            }
+            else if (GameManager.gm.currentState == GameManager.GameState.memoryRecall)
+            {
+                count = AudioPeer.ap.beatsInRecallPhase;
+            }
+
+            if ((EnemyRelayManager.erm.counting || GameManager.gm.currentState == GameManager.GameState.memoryRecall))
+            {
+                Vector2 placement = new Vector3(transform.position.x, transform.position.y + 1);
+                FloatingTextController.CreateFloatingText(count.ToString(), placement);
+            }
+
+        }
+
+
+
+        //maingame
         if (AudioPeer.ap.beats % 4 == 0)
         {
             //Only blink red during gameplay phases
-            if (GameManager.gm.currentState == GameManager.GameState.menu  || GameManager.gm.currentState == GameManager.GameState.musicSelect || GameManager.gm.currentState == GameManager.GameState.credits)
+            if (GameManager.gm.currentState == GameManager.GameState.menu  || GameManager.gm.currentState == GameManager.GameState.musicSelect || GameManager.gm.currentState == GameManager.GameState.credits || GameManager.gm.currentState == GameManager.GameState.options)
             {
                 //stay white
             }
             else
             {
-                FindObjectOfType<SoundEffectManager>().Play("Beat");
-                //FindObjectOfType<SoundEffectManager>().Play("Snare");
+                if(GameManager.gm.beatSound == GameManager.BeatSound.beatSound_On)
+                {
+                    FindObjectOfType<SoundEffectManager>().Play("Beat");
+                }
+
                 rend.material.SetColor("_Color", endBeat);
             }
 
@@ -132,7 +168,7 @@ public class PlayerVisualizer : MonoBehaviour
         }
         else if (AudioPeer.ap.beats % 4 != 0)
         {
-            if (GameManager.gm.currentState != GameManager.GameState.menu && GameManager.gm.currentState != GameManager.GameState.musicSelect && GameManager.gm.currentState != GameManager.GameState.credits)
+            if (GameManager.gm.beatSound == GameManager.BeatSound.beatSound_On && GameManager.gm.currentState != GameManager.GameState.menu && GameManager.gm.currentState != GameManager.GameState.musicSelect && GameManager.gm.currentState != GameManager.GameState.credits && GameManager.gm.currentState != GameManager.GameState.options)
             {
                 FindObjectOfType<SoundEffectManager>().Play("Snare");
             }

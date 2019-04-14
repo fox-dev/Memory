@@ -40,7 +40,8 @@ public class SongSelectUI : MonoBehaviour {
     public RectTransform selectedButton;  //image bar for highlighting selected button
     public List<GameObject> buttons;
     private Text selectedText; //assign text component when tapping;
-    private Vector3 selectedButtonPos;
+    private Vector3 selectedButtonPos; //difficulty
+    private GameObject difficulty_button;
     private Color unselected;
 
     //To Disable For tutorial// Set in inspector
@@ -53,8 +54,8 @@ public class SongSelectUI : MonoBehaviour {
         PopulateSongButtons();
         setDefaults();
         CenterToItem();
-
     }
+
 
     private void OnEnable()
     {
@@ -65,11 +66,12 @@ public class SongSelectUI : MonoBehaviour {
         
         setDefaults();
         CenterToItem();
-       
+
     }
 
     public void setDefaults()
     {
+     
         selectedSongIndex = AudioPeer.ap.selectClip_index;
         if(songs.Count != 0 )
         {
@@ -78,21 +80,31 @@ public class SongSelectUI : MonoBehaviour {
             selectedSong.SetParent(songs[selectedSongIndex].transform);
             selectedSong.SetSiblingIndex(0);
         }
-        selectedButtonPos = buttons[1].GetComponent<RectTransform>().position; //normal button
-        GameManager.gm.difficulty = GameManager.Difficulty.normal;
+        selectedButtonPos = buttons[0].GetComponent<RectTransform>().position; //easy button
+        GameManager.gm.difficulty = GameManager.Difficulty.easy;
 
         populateInfoPanel();
         populateScoreInfo();
 
         if (selectedSongIndex == 0)
         {
-            HighlightThisButton(buttons[1]);
+            HighlightThisButton(buttons[0]);
         }
         else
         {
             normalButton.SetActive(true);
             hardButton.SetActive(true);
-            HighlightThisButton(buttons[1]);
+            if(difficulty_button != null)
+            {
+                HighlightThisButton(difficulty_button);
+            }
+            else
+            {
+                HighlightThisButton(buttons[0]);
+            }
+            
+            
+            
         }
 
        
@@ -131,7 +143,7 @@ public class SongSelectUI : MonoBehaviour {
         //Tutorial song selected, disable normal and hard buttons
         if (selectedSongIndex == 0)
         {
-            HighlightThisButton(buttons[1]);
+            HighlightThisButton(buttons[0]);
             populateInfoPanel();
             populateScoreInfo();
         }
@@ -208,6 +220,7 @@ public class SongSelectUI : MonoBehaviour {
     {
         //Aesthetics
         GameObject selected = EventSystem.current.currentSelectedGameObject;
+        difficulty_button = selected;
         selectedText = selected.GetComponentInChildren<Text>();
         selectedButtonPos = selected.GetComponent<RectTransform>().position;
         selectedButton.position = selectedButtonPos;

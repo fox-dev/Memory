@@ -37,7 +37,7 @@ public class ShineRay : MonoBehaviour
 
 
         //Vector3 pos_at_z_0 = crosshair.transform.position;
-        Vector3 pos_at_z_0 = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //Vector3 pos_at_z_0 = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
         ////////////////
 

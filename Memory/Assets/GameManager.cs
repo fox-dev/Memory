@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
         test, //testing purposes
         menu, //menu state for main menu
         credits, //credits menu
+        options, //options menu
         tutorial, //tutorial music stage
         musicSelect, //music select state;
         ready, //state to last x seconds before moving to normalPlay, for any transition elements
@@ -21,6 +22,19 @@ public class GameManager : MonoBehaviour {
         pause, //paused gamestate
         results, //results gameState
         gameOver //gameover
+    }
+
+    //Options//
+    public enum Options
+    {
+        count_On, //shows beat count in phases;
+        count_Off 
+    }
+
+    public enum BeatSound
+    {
+        beatSound_On, // sound of middle cube beat
+        beatSound_Off
     }
 
     //Difficulty// difficulty sets
@@ -37,12 +51,14 @@ public class GameManager : MonoBehaviour {
 
     public GameState currentState; //current gameplay state
     public GameState previousState; //previous state
+    public Options option = Options.count_Off; //Default off
+    public BeatSound beatSound = BeatSound.beatSound_On; //Default on
 
     public Difficulty difficulty; //game difficulty
 
     public Player player;
 
-    float ElapsedTime, FinishTime; //Start and End time for moving object, in seconds
+    float ElapsedTime;// FinishTime; //Start and End time for moving object, in seconds
 
     public List<GameObject> targets;
 
@@ -87,7 +103,10 @@ public class GameManager : MonoBehaviour {
     void Awake () {
         //Clear Save//
         //PlayerPrefs.DeleteAll();
-        //Application.targetFrameRate = 60;
+
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 120;
+
 
         if (gm != null)
         {
@@ -99,7 +118,7 @@ public class GameManager : MonoBehaviour {
         }
 
         ElapsedTime = 0;
-        FinishTime = 0;
+        //FinishTime = 0;
 
         playerSave = new SaveData();
         playerData = new ScoreData();
@@ -115,6 +134,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
+        
         //assign main erm reference
         if (erm != null)
         {
@@ -159,8 +179,8 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-   
-        if(playerData.perfectRun > 0)
+        
+        if (playerData.perfectRun > 0)
         {
             grade = (float)((playerData.correctHits - playerData.misses) / playerData.perfectRun);
         }
@@ -466,7 +486,7 @@ public class GameManager : MonoBehaviour {
     //Custom checkTimeInRange to transition to different setups in the tutorial
     void checkTimeInRange_Tutorial()
     {
-        //First thing tot enable is step1
+        //First thing to enable is step1
 
         TutorialManager.tm.step1 = true;
         
@@ -702,7 +722,7 @@ public class GameManager : MonoBehaviour {
     public void makeEnemyShoot()
     {
 
-        AudioPeer.ap.Distort(0.2f);
+        AudioPeer.ap.Distort(0.1f);
         if (erm.enemyOrder[0].gameObject.tag == "Enemy" && erm.enemyOrder[0].transform.position == erm.gpOrder[0])
         {
             erm.enemyOrder[0].shoot(erm.enemyOrder[0].gameObject);

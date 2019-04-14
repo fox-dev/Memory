@@ -14,7 +14,7 @@ public class ShootShineRay : MonoBehaviour
 
     public float timeBetweenBullets = 0.15f;
 
-    Quaternion direction;
+   // Quaternion direction;
     float shootRotation;
 
     void Start()
@@ -22,7 +22,7 @@ public class ShootShineRay : MonoBehaviour
 
 
         shootRotation = 0;
-        direction = Quaternion.Euler(shootRotation, 90, 0); //For fireball, rotate along Y-Axis
+        //direction = Quaternion.Euler(shootRotation, 90, 0); //For fireball, rotate along Y-Axis
         maxShots = 360 / rotateInterval;
 
      
@@ -34,7 +34,7 @@ public class ShootShineRay : MonoBehaviour
         numShots = 0;
         maxShots = 5;
         shootRotation = 0;
-        direction = Quaternion.Euler(shootRotation, 90, 0); //For fireball, rotate along Y-Axis
+        //direction = Quaternion.Euler(shootRotation, 90, 0); //For fireball, rotate along Y-Axis
         maxShots = 360 / rotateInterval;
         StartCoroutine(shootRays());
 
@@ -59,7 +59,7 @@ public class ShootShineRay : MonoBehaviour
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
 
-            direction = Quaternion.Euler(shootRotation, 90, 0);
+           // direction = Quaternion.Euler(shootRotation, 90, 0);
            // bullet.GetComponent<ShineRay>().assignShootDirection(direction);
             shootRotation += rotateInterval;
 

@@ -5,11 +5,11 @@ using UnityEngine;
 //Controller of floating text, call init() in gamemanager
 public class FloatingTextController : MonoBehaviour {
     //Main UI canvavs
-    private static GameObject canvas;
+    //private static GameObject canvas;
 
     public static void Init()
     {
-        canvas = GameObject.Find("Canvas");
+        //canvas = GameObject.Find("Canvas");
     }
 
     //Assign text, and screen to world location

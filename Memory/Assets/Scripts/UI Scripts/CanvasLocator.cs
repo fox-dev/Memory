@@ -20,7 +20,7 @@ public class CanvasLocator : MonoBehaviour
 
     private void OnEnable()
     {
-        if (myTransform.parent.name == "MusicSelect_UI" || myTransform.parent.name == "Credits_UI")
+        if (myTransform.parent.name == "MusicSelect_UI" || myTransform.parent.name == "Credits_UI" || myTransform.parent.name == "Options_UI")
         {
             MusicSelectUI_lerpOn();
         }
@@ -28,7 +28,7 @@ public class CanvasLocator : MonoBehaviour
 
     public void Generic_Disable()
     {
-        if (myTransform.parent.name != "MusicSelect_UI" && myTransform.parent.name != "Credits_UI")
+        if (myTransform.parent.name != "MusicSelect_UI" && myTransform.parent.name != "Credits_UI" && myTransform.parent.name != "Options_UI")
         {
             myTransform.parent.gameObject.SetActive(false);
         }

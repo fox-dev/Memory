@@ -21,7 +21,8 @@ public class Enemy : MonoBehaviour {
 
     Renderer rend;
 
-    private int currentBeat = 0;
+
+    //private int currentBeat = 0;
 
     //beat visualizer for enemy is enabled
     bool beating;
@@ -127,6 +128,7 @@ public class Enemy : MonoBehaviour {
         {
             Debug.Log("NO TARGET POSITION SET FOR " + myTransform.name);
         }
+
         if(this.tag == "Enemy_Cluster")
         {
             foreach (Transform child in transform)
@@ -136,7 +138,7 @@ public class Enemy : MonoBehaviour {
             }
         }
 
-        currentBeat = AudioPeer.ap.beats;
+        //currentBeat = AudioPeer.ap.beats;
 
     }
 

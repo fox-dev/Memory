@@ -12,7 +12,7 @@ public class CamEvents : MonoBehaviour {
 
     private Transform myTransform;
 
-    float ElapsedTime, FinishTime;
+    float ElapsedTime;// FinishTime;
 
     public float startOrthoSize, targetOrthoSize;
 
@@ -25,7 +25,7 @@ public class CamEvents : MonoBehaviour {
         startOrthoSize = Camera.main.orthographicSize;
 
         ElapsedTime = 0f;
-        FinishTime = 1.5f;
+        //FinishTime = 1.5f;
     }
 	
 	// Update is called once per frame
@@ -34,7 +34,7 @@ public class CamEvents : MonoBehaviour {
         ElapsedTime += Time.deltaTime;
 
         // Camera.main.orthographicSize = Mathf.Lerp(startOrthoSize, targetOrthoSize, ElapsedTime / FinishTime);
-        if (GameManager.gm.currentState != GameManager.GameState.menu)
+        if (GameManager.gm.currentState != GameManager.GameState.menu && GameManager.gm.currentState != GameManager.GameState.credits && GameManager.gm.currentState != GameManager.GameState.options)
         {
             if (shakeTimer >= 0)
             {

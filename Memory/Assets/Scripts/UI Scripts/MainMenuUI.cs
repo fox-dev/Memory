@@ -26,4 +26,9 @@ public class MainMenuUI : MonoBehaviour {
     {
         GameManager.gm.currentState = GameManager.GameState.credits;
     }
+
+    public void GoToOptions()
+    {
+        GameManager.gm.currentState = GameManager.GameState.options;
+    }
 }

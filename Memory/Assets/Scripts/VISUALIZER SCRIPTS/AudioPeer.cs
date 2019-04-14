@@ -164,7 +164,7 @@ public class AudioPeer : MonoBehaviour
         
 
         //loop songs on menu/music select screen
-        if ((GameManager.gm.currentState == GameManager.GameState.menu || GameManager.gm.currentState == GameManager.GameState.musicSelect || GameManager.gm.currentState == GameManager.GameState.credits) && songEnded())
+        if ((GameManager.gm.currentState == GameManager.GameState.menu || GameManager.gm.currentState == GameManager.GameState.musicSelect || GameManager.gm.currentState == GameManager.GameState.credits || GameManager.gm.currentState == GameManager.GameState.options) && songEnded())
         {
             if (!_audioSource.isPlaying)
             {

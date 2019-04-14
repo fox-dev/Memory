@@ -10,11 +10,11 @@ public class FloatingText : MonoBehaviour {
     //Set in inspector
     public Animator animator;
     private Text textString;
-    AnimatorClipInfo[] clipInfo;
+    //AnimatorClipInfo[] clipInfo;
 
     void OnEnable()
     {
-        clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        //clipInfo = animator.GetCurrentAnimatorClipInfo(0);
         //Destroy(gameObject, clipInfo[0].clip.length);
 
         textString = animator.GetComponent<Text>();

@@ -28,7 +28,7 @@ public class SoundEffectManager : MonoBehaviour {
     public Sound[] sounds;
 
     //Check if beat has changed, do not play sounds more than once on the same beat
-    private bool currentBeatStatus = false;
+    //private bool currentBeatStatus = false;
 
 	// Use this for initialization before start()
 	void Awake () {

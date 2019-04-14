@@ -140,7 +140,7 @@ public class TutorialManager : MonoBehaviour {
             StartCoroutine(lerpMessage());
         }
 
-        if (step4 && !message4_Shown)
+        if (step4 && !message4_Shown) //Step 4 enabled in Player Visualizer Script
         {
             message4_Shown = true;
             tutorialMessage.text = "Match the number of beats of the given pattern for even more points.";

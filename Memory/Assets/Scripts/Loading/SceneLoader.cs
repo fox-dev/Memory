@@ -73,7 +73,7 @@ public class SceneLoader : MonoBehaviour {
             loadingImage.fillAmount = progress;
             animate();
             loadingText.text = (progress * 100f).ToString("F0") + "%";
-            Debug.Log(progress);
+            //Debug.Log(progress);
 
             yield return null;
         }
